@@ -43,25 +43,25 @@ check_nonRootDir $this_script_path
 this_bin_path="$this_script_path/bin"
 this_config_path="$this_bin_path/config"
 
-source $this_config_path/this.sh
-source $this_config_path/client.sh
-source $this_bin_path/set_revisionDate.sh
-source $this_bin_path/set_creationDate.sh
-source $this_bin_path/set_author.sh
-source $this_bin_path/set_title.sh
-source $this_bin_path/set_versionNumber.sh
-source $this_bin_path/get_versionFileIdentifiers.sh
-source $this_bin_path/check_versionFileType.sh
-source $this_bin_path/splitVersionIdentifiers.sh
-source $this_bin_path/update_versionNumber.sh
-source $this_bin_path/create_versionFile.sh
-source $this_bin_path/read_versionFile.sh
-source $this_bin_path/update_externalVersionFiles.sh
-source $this_bin_path/update_versionFile.sh
-source $this_bin_path/help.sh
-source $this_bin_path/optExec.sh
-source $this_bin_path/main.sh
+source "$this_config_path/this.sh"
+source "$this_config_path/client.sh"
+source "$this_bin_path/set_revisionDate.sh"
+source "$this_bin_path/set_creationDate.sh"
+source "$this_bin_path/set_author.sh"
+source "$this_bin_path/set_title.sh"
+source "$this_bin_path/set_versionNumber.sh"
+source "$this_bin_path/get_versionFileIdentifiers.sh"
+source "$this_bin_path/check_versionFileType.sh"
+source "$this_bin_path/splitVersionIdentifiers.sh"
+source "$this_bin_path/update_versionNumber.sh"
+source "$this_bin_path/create_versionFile.sh"
+source "$this_bin_path/read_versionFile.sh"
+source "$this_bin_path/update_externalVersionFiles.sh"
+source "$this_bin_path/update_versionFile.sh"
+source "$this_bin_path/help.sh"
+source "$this_bin_path/optExec.sh"
+source "$this_bin_path/main.sh"
 
-main $@
+main "$@"
 
 exit;

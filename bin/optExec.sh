@@ -39,7 +39,13 @@ function optExec(){
                 exit;
             ;;
             'g')
+
                 toggle_git=true
+
+                if sh -c ": >/dev/tty" >/dev/null 2>/dev/null; then
+                    exec < /dev/tty
+                fi
+
             ;;
             'a')
                 auto_action="$2"
@@ -54,6 +60,9 @@ function optExec(){
             ;;
             'E')
                 toggle_noExternals=true
+            ;;
+            '*')
+                echo "ERROR: Unsupported Option."
             ;;
         esac
     done

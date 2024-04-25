@@ -44,7 +44,7 @@ function update_versionNumber(){
 
     old_versionNumber=$program_version
 
-    versionNumberUpdates="major minor patch e-major e-major-sub e-minor e-patch"
+    versionNumberUpdates="major minor patch e-major e-major-sub e-minor e-patch none"
 
     echo "Choose your Version Change."
 
@@ -243,6 +243,10 @@ function update_versionNumber(){
 
                 fi
 
+            ;;
+
+            "none")
+                exit;
             ;;
 
         esac
