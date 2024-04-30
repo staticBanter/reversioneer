@@ -9,7 +9,7 @@ read_versionFile(){
 
     fi
 
-    if [ ! $auto_read ]; then
+    if [ ! "$auto_read" ]; then
 
         echo "Choose Your Read Option: "
 
@@ -83,7 +83,7 @@ read_versionFile(){
             ;;
 
             "all")
-                echo $(cat "./${versionFile_name}" | tr '\n' " ")
+                echo "$(cat "./${versionFile_name}" | tr '\n' " ")"
             ;;
 
         esac

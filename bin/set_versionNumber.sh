@@ -30,7 +30,7 @@ function updateHighs(){
 function compareVersionNumbers(){
 
 
-    if [[ ! $highestVersionNumber_major || $program_major -gt $highestVersionNumber_major  ]]; then
+    if [[ ! "$highestVersionNumber_major" || "$program_major" -gt "$highestVersionNumber_major"  ]]; then
 
         highestVersionNumberFile="${1}"
 
@@ -38,9 +38,9 @@ function compareVersionNumbers(){
 
         return;
 
-    elif [[ $program_major -eq $highestVersionNumber_major ]]; then
+    elif [[ "$program_major" -eq "$highestVersionNumber_major" ]]; then
 
-        if [[ ! $highestVersionNumber_minor || $program_minor -gt $highestVersionNumber_minor ]]; then
+        if [[ ! "$highestVersionNumber_minor" || "$program_minor" -gt "$highestVersionNumber_minor" ]]; then
 
             highestVersionNumberFile="${1}"
 
@@ -48,9 +48,9 @@ function compareVersionNumbers(){
 
             return;
 
-        elif [ $program_minor -eq $highestVersionNumber_minor ]; then
+        elif [ "$program_minor" -eq "$highestVersionNumber_minor" ]; then
 
-            if [[ ! $highestVersionNumber_patch || $highestVersionNumber_patch -lt $program_patch ]]; then
+            if [[ ! "$highestVersionNumber_patch" || "$highestVersionNumber_patch" -lt "$program_patch" ]]; then
 
                 highestVersionNumberFile="${1}"
 
@@ -95,20 +95,30 @@ function set_versionNumber(){
 
         splitVersionIdentifiers
 
-        compareVersionNumbers $versionFile
+        compareVersionNumbers "$versionFile"
 
         continue;
 
     done;
 
-    program_version=$(extractFromFile $highestVersionNumberFile)
+    program_version=$(extractFromFile "$highestVersionNumberFile")
 
-    if [ ! $program_version ]; then
+    if [ ! "$program_version" ]; then
 
         echo "No Valid Version Number Found..."
-        read -p "Enter Custom Program Version or leave blank for default ($versionNumber_default): " program_version
 
-        if [ ! $program_version]; then
+        if [ $toggle_useFallbacks ]; then
+
+            echo "Using Defaults..."
+
+            program_version=$versionNumber_default
+
+            return;
+        fi
+
+        read -rp "Enter Custom Program Version or leave blank for default ($versionNumber_default): " program_version
+
+        if [ ! "$program_version" ]; then
             program_version=$versionNumber_default
         fi
 

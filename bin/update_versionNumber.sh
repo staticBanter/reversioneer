@@ -2,29 +2,29 @@
 
 function checkEMajorVersionNumber(){
 
-    if [ ! $program_eMajor ]; then
+    if [ ! "$program_eMajor" ]; then
 
         echo "There was no initial Major Environment Version"
 
-        read -p "Enter an Environment Version or leave blank for default (default: $eMajor_default):" program_eMajor
+        read -rp "Enter an Environment Version or leave blank for default (default: $eMajor_default):" program_eMajor
 
-        if [ ! $program_eMajor ]; then
+        if [ ! "$program_eMajor" ]; then
             program_eMajor="${eMajor_default}"
         fi
 
-        if [ ! $program_eMajorSub ]; then
+        if [ ! "$program_eMajorSub" ]; then
 
             echo "No Major Sub Environment Version Detected."
 
             addMajorSub=""
 
-            read -p "Would you like to add a Major Sub Environment Version Identifier (y/N): " addMajorSub
+            read -rp "Would you like to add a Major Sub Environment Version Identifier (y/N): " addMajorSub
 
             if [[ "${addMajorSub}" == "y" || "${addMajorSub}" == "y" ]]; then
 
-                read -p "Enter the programs current Major Sub Environment or leave blank for default (default: $eMajorSub_default):" program_eMajorSub
+                read -rp "Enter the programs current Major Sub Environment or leave blank for default (default: $eMajorSub_default):" program_eMajorSub
 
-                if [ ! $program_eMajorSub ]; then
+                if [ ! "$program_eMajorSub" ]; then
                     program_eMajorSub="${eMajorSub_default}"
                 fi
 
@@ -86,13 +86,13 @@ function update_versionNumber(){
 
             "e-major")
 
-                if [ ! $program_eMajor ]; then
+                if [ ! "$program_eMajor" ]; then
 
                     echo "No Major Environment Version Detected."
 
-                    read -p "Enter the programs current Major Environment or leave blank for default (default: $eMajor_default):" program_eMajor
+                    read -rp "Enter the programs current Major Environment or leave blank for default (default: $eMajor_default):" program_eMajor
 
-                    if [ ! $program_eMajor ]; then
+                    if [ ! "$program_eMajor" ]; then
                         program_eMajor="${eMajor_default}"
                     fi
 
@@ -107,7 +107,7 @@ function update_versionNumber(){
                         if [ "${eMajorModification}" == "increment" ]; then
                             (( program_eMajor++ ))
                         else
-                            read -p "Enter the new Major Environment:" program_eMajor
+                            read -rp "Enter the new Major Environment:" program_eMajor
                         fi
 
                         break;
@@ -117,7 +117,7 @@ function update_versionNumber(){
 
                 addOrUpdateEMajorSub=""
 
-                if [ $program_eMajorSub ]; then
+                if [ "$program_eMajorSub" ]; then
 
                     echo "Current Major Sub Environment: $program_eMajorSub"
 
@@ -127,15 +127,15 @@ function update_versionNumber(){
 
                 fi
 
-                read -p "Would you like to also update the Major Sub Environment? (y/N)" addOrUpdateEMajorSub
+                read -rp "Would you like to also update the Major Sub Environment? (y/N)" addOrUpdateEMajorSub
 
                 if [[ "${addOrUpdateEMajorSub}" == "y" || "${addOrUpdateEMajorSub}" == "Y" ]]; then
 
-                    if [ ! $program_eMajorSub ]; then
+                    if [ ! "$program_eMajorSub" ]; then
 
-                        read -p "Enter the new Major Sub Environment or leave blank for default (default: $eMajorSub_default):" program_eMajorSub
+                        read -rp "Enter the new Major Sub Environment or leave blank for default (default: $eMajorSub_default):" program_eMajorSub
 
-                        if [ ! $program_eMajorSub ]; then
+                        if [ ! "$program_eMajorSub" ]; then
                             program_eMajorSub="${eMajorSub_default}"
 
                         fi
@@ -150,7 +150,7 @@ function update_versionNumber(){
                             if [ "${eMajorSubModification}" == "increment" ]; then
                                 (( program_eMajorSub++ ))
                             else
-                                read -p "Enter the new Major Sub Environment:" program_eMajorSub
+                                read -rp "Enter the new Major Sub Environment:" program_eMajorSub
                             fi
 
                             break;
@@ -167,25 +167,25 @@ function update_versionNumber(){
 
             "e-major-sub")
 
-                if [ ! $program_eMajor ]; then
+                if [ ! "$program_eMajor" ]; then
 
                     echo "There was no initial Major Environment Version"
 
                     read -p "Enter an Environment Version or leave blank for default (default: $eMajor_default):" program_eMajor
 
-                    if [ ! $program_eMajor ]; then
+                    if [ ! "$program_eMajor" ]; then
                         program_eMajor="${eMajor_default}"
                     fi
 
                 fi
 
-                if [ ! $program_eMajorSub ]; then
+                if [ ! "$program_eMajorSub" ]; then
 
                     echo "No Major Sub Environment Version Detected."
 
-                    read -p "Enter the programs current Major Sub Environment or leave blank for default (default: $eMajorSub_default):" program_eMajorSub
+                    read -rp "Enter the programs current Major Sub Environment or leave blank for default (default: $eMajorSub_default):" program_eMajorSub
 
-                    if [ ! $program_eMajorSub ]; then
+                    if [ ! "$program_eMajorSub" ]; then
                         program_eMajorSub="${eMajorSub_default}"
                     fi
 
@@ -195,10 +195,10 @@ function update_versionNumber(){
 
                     select eMajorSubModification in custom increment
                     do
-                        if [ "${eMajorSubModification}" == "increment"]; then
+                        if [ $eMajorSubModification == "increment" ]; then
                             (( program_eMajorSub++ ))
                         else
-                            read -p "Enter the new Major Sub Environment:" program_eMajorSub
+                            read -rp "Enter the new Major Sub Environment:" program_eMajorSub
                         fi
 
                         break;
@@ -215,7 +215,7 @@ function update_versionNumber(){
 
                 checkEMajorVersionNumber
 
-                if [ $program_eMinor ]; then
+                if [ "$program_eMinor" ]; then
 
                     (( program_eMinor++ ))
 
@@ -233,7 +233,7 @@ function update_versionNumber(){
 
                 checkEMajorVersionNumber
 
-                if [ $program_ePatch ]; then
+                if [ "$program_ePatch" ]; then
 
                     (( program_ePatch++ ))
 
@@ -256,9 +256,9 @@ function update_versionNumber(){
 
     program_version="$program_major.$program_minor.$program_patch"
 
-    if [ $program_eMajor ]; then
+    if [ "$program_eMajor" ]; then
 
-        if [ $program_eMajorSub ]; then
+        if [ "$program_eMajorSub" ]; then
 
             program_version="$program_version-$program_eMajor-$program_eMajorSub.$program_eMinor.$program_ePatch"
 
@@ -270,7 +270,7 @@ function update_versionNumber(){
 
     fi
 
-    if [ $program_buildData ]; then
+    if [ "$program_buildData" ]; then
 
         program_version="$program_version+$program_buildData"
 

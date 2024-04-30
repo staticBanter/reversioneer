@@ -2,9 +2,9 @@
 
 main(){
 
-    optExec $@
+    optExec "$@"
 
-    if [ ! $auto_action ]; then
+    if [ ! "$auto_action" ]; then
 
         options="create read update"
 

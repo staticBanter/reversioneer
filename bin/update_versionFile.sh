@@ -8,7 +8,7 @@ function update_versionFile(){
 
         echo "There was No Version File Detected."
 
-        read -p "Would you like to Create A Version File? (Y/n)" createVersionFile
+        read -rp "Would you like to Create A Version File? (Y/n)" createVersionFile
 
         if [[ "${createVersionFile}" == "n" || "${createVersionFile}" == "N" ]]; then
             return;
@@ -51,7 +51,6 @@ function update_versionFile(){
             ;;
     esac
 
-    echo "'$versionFileString'"
     echo "$versionFileString" > "./$versionFile_name"
 
     if [ $toggle_git ]; then

@@ -15,7 +15,7 @@ function swapVersionNumbers(){
         ;;
         "README.md" | "readme.md" | "README" | "readme")
 
-            if [ ! $toggle_noReadMe ]; then
+            if [ ! "$toggle_noReadMe" ]; then
 
                 old_versionNumberString=$(grep -wi "version:" "./$1" | head -1)
                 old_versionStringIdentifier=$(grep -wi "version:" "./$1" | head -1 |cut -d " " -f1)
@@ -41,7 +41,7 @@ function update_externalVersionFiles(){
 
         swapVersionNumbers "${versionFile}"
 
-        if [ $toggle_git ]; then
+        if [ "$toggle_git" ]; then
 
             git add "./${versionFile}"
 

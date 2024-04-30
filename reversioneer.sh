@@ -25,9 +25,9 @@ function check_nonRootDir(){
 
         echo "WARNING: This scripts path is pointing to the ROOT (/) directory. This could be dangerous!"
 
-        read -p "Would you like to continue? (y/N)" continueWithRootDirectoryPath
+        read -rp "Would you like to continue? (y/N)" continueWithRootDirectoryPath
 
-        if [[ "${continueWithRootDirectoryPath}" != "y" || "${continueWithRootDirectoryPath}" != "Y" ]]; then
+        if [[ "${continueWithRootDirectoryPath}" != "y" && "${continueWithRootDirectoryPath}" != "Y" ]]; then
 
             echo "Cancelling..."
             exit 1;
@@ -38,7 +38,7 @@ function check_nonRootDir(){
 
 }
 
-check_nonRootDir $this_script_path
+check_nonRootDir "$this_script_path"
 
 this_bin_path="$this_script_path/bin"
 this_config_path="$this_bin_path/config"
