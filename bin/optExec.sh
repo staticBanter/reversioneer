@@ -44,6 +44,30 @@ function optExec(){
 
                 if sh -c ": >/dev/tty" >/dev/null 2>/dev/null; then
                     exec < /dev/tty
+                else
+                    terminals="gnome-terminal"
+
+                    for terminal in $terminals; do
+
+                        if command -v "$terminal" &> /dev/null
+                        then
+
+                            case $terminal in
+
+                                "gnome-terminal")
+
+                                    gnome-terminal --wait --command "$this_script_path/reversioneer.sh -a update -g"
+
+                                    continue;
+
+                                ;;
+
+                            esac
+
+                        fi
+
+                    done;
+
                 fi
 
             ;;
